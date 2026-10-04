@@ -1,0 +1,46 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Lab2 Task2
+x-yc-apigateway:
+  validator:   # включение валидации параметров запроса на шлюзе
+    validateRequestParameters: true
+
+servers:
+- url: https://d5dad2bh8hmlegj7g504.3rspsmhh.apigw.yandexcloud.net
+paths:
+  /{date}:
+    parameters:
+      # date из 6 цифр - параметр пути
+      - name: date
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: '^\d{6}$'
+    x-yc-apigateway-any-method:
+      x-yc-apigateway-integration:
+        type: cloud_functions
+        function_id: d4egdlf0602g3oomk873
+        tag: "$latest"
+      responses:
+        '200':
+          description: OK
+
+  /api/rv/{word}:
+    parameters:
+      # word из строчных латинских букв - параметр пути после /api/rv/
+      - name: word
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: '^[a-z]+$'
+    x-yc-apigateway-any-method:
+      x-yc-apigateway-integration:
+        type: cloud_functions
+        function_id: d4egdlf0602g3oomk873
+        tag: "$latest"
+      responses:
+        '200':
+          description: OK
