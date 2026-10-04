@@ -25,8 +25,6 @@ exports.handler = async function (event, context) {
     // Получение параметров пути
     const params = event.pathParams || event.pathParameters || {};
 
-    console.log("Содержимое pathParams:", JSON.stringify(params, null, 2));
-
     // (B) /api/rv/{word} - есть параметр word
     if (params.word !== undefined) {
         return {
