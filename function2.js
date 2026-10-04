@@ -1,27 +1,6 @@
 const LOGIN = 'thelonecheetah';
 
 exports.handler = async function (event, context) {
-    // Корневой маршрут
-    if (event.path === '/' || event.path === '') {
-        return {
-            statusCode: 200,
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ status: 'ok', login: LOGIN })
-        };
-    }
-
-    if (event.httpMethod === 'OPTIONS') {
-        return {
-            statusCode: 200,
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
-                'Access-Control-Allow-Headers': '*'
-            },
-            body: ''
-        };
-    }
-
     // Получение параметров пути
     const params = event.pathParams || event.pathParameters || {};
 
